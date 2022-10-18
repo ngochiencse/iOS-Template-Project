@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainTabbarController" customModule="Meijin" customModuleProvider="target">
+            <connections>
+                <outlet property="contentViewContainer" destination="Fyn-7G-sAe" id="LKQ-tn-KMk"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outletCollection property="tabButtons" destination="L6L-e7-ZdT" collectionClass="NSMutableArray" id="CYg-3t-vMl"/>
+                <outletCollection property="tabButtons" destination="62Y-f1-Qa1" collectionClass="NSMutableArray" id="1MZ-kf-yPR"/>
+                <outletCollection property="tabButtons" destination="zbP-kc-AXs" collectionClass="NSMutableArray" id="vSH-ve-GRs"/>
+                <outletCollection property="tabButtons" destination="3um-SS-RPu" collectionClass="NSMutableArray" id="arI-uB-Twg"/>
+                <outletCollection property="tabButtons" destination="esR-rF-8Iv" collectionClass="NSMutableArray" id="s07-Em-f0d"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fyn-7G-sAe">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="728"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5xb-rL-Mbm">
+                    <rect key="frame" x="0.0" y="728" width="375" height="84"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="G3J-nz-dei">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L6L-e7-ZdT">
+                                    <rect key="frame" x="0.0" y="0.0" width="75" height="50"/>
+                                    <state key="normal" title="Tab 1"/>
+                                </button>
+                                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="62Y-f1-Qa1">
+                                    <rect key="frame" x="75" y="0.0" width="75" height="50"/>
+                                    <state key="normal" title="Tab 2"/>
+                                </button>
+                                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zbP-kc-AXs">
+                                    <rect key="frame" x="150" y="0.0" width="75" height="50"/>
+                                    <state key="normal" title="Tab 3"/>
+                                </button>
+                                <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3um-SS-RPu">
+                                    <rect key="frame" x="225" y="0.0" width="75" height="50"/>
+                                    <state key="normal" title="Tab 4"/>
+                                </button>
+                                <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="esR-rF-8Iv">
+                                    <rect key="frame" x="300" y="0.0" width="75" height="50"/>
+                                    <state key="normal" title="Tab 5"/>
+                                </button>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="qL0-NX-izG"/>
+                            </constraints>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.90602075997652576" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="G3J-nz-dei" secondAttribute="trailing" id="Lv2-1g-fBC"/>
+                        <constraint firstItem="G3J-nz-dei" firstAttribute="leading" secondItem="5xb-rL-Mbm" secondAttribute="leading" id="N0f-7K-0u0"/>
+                        <constraint firstItem="G3J-nz-dei" firstAttribute="top" secondItem="5xb-rL-Mbm" secondAttribute="top" id="bLc-ie-G9p"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="5xb-rL-Mbm" firstAttribute="leading" secondItem="WLv-EB-blF" secondAttribute="leading" id="4Eu-fe-jgR"/>
+                <constraint firstItem="5xb-rL-Mbm" firstAttribute="top" secondItem="Fyn-7G-sAe" secondAttribute="bottom" id="C2p-fC-UsU"/>
+                <constraint firstItem="Fyn-7G-sAe" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="C72-Oy-S5V"/>
+                <constraint firstItem="Fyn-7G-sAe" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="NH9-w3-sjO"/>
+                <constraint firstItem="WLv-EB-blF" firstAttribute="bottom" secondItem="G3J-nz-dei" secondAttribute="bottom" id="TEN-b5-6DT"/>
+                <constraint firstItem="5xb-rL-Mbm" firstAttribute="trailing" secondItem="WLv-EB-blF" secondAttribute="trailing" id="YnJ-H9-cf4"/>
+                <constraint firstAttribute="trailing" secondItem="Fyn-7G-sAe" secondAttribute="trailing" id="jbX-YH-pse"/>
+                <constraint firstItem="5xb-rL-Mbm" firstAttribute="bottom" secondItem="i5M-Pr-FkT" secondAttribute="bottom" id="z2a-zr-y8A"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="WLv-EB-blF"/>
+            <point key="canvasLocation" x="131.25" y="142.6056338028169"/>
+        </view>
+    </objects>
+</document>

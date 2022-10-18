@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TutorialViewController" customModule="Meijin" customModuleProvider="target">
+            <connections>
+                <outlet property="finishButton" destination="qIt-V6-ij0" id="kfI-Ep-rZt"/>
+                <outlet property="finishView" destination="uLu-xC-zB0" id="h8s-Eb-hfy"/>
+                <outlet property="pageView" destination="CnC-7L-zB3" id="cbP-5H-ZNH"/>
+                <outlet property="view" destination="pIf-Mj-q5p" id="mSm-ny-9BD"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="pIf-Mj-q5p">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CnC-7L-zB3" customClass="FSPagerView" customModule="FSPagerView">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uLu-xC-zB0">
+                    <rect key="frame" x="0.0" y="812" width="414" height="84"/>
+                    <subviews>
+                        <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g6o-AJ-MRV">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="84"/>
+                            <color key="backgroundColor" red="0.93725490196078431" green="1" blue="0.99607843137254903" alpha="1" colorSpace="calibratedRGB"/>
+                        </view>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qIt-V6-ij0">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="YPF-Y7-Gbf"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                            <state key="normal" title="お仕事を始める">
+                                <color key="titleColor" red="0.26666666666666666" green="0.45098039215686275" blue="0.61568627450980395" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="nextButtonClicked:" destination="-1" eventType="touchUpInside" id="pF1-CC-FUZ"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="qIt-V6-ij0" secondAttribute="trailing" id="3KI-UZ-IwQ"/>
+                        <constraint firstItem="qIt-V6-ij0" firstAttribute="leading" secondItem="uLu-xC-zB0" secondAttribute="leading" id="Fsg-rN-Ij3"/>
+                        <constraint firstAttribute="bottom" secondItem="g6o-AJ-MRV" secondAttribute="bottom" id="UdH-AL-YpW"/>
+                        <constraint firstItem="qIt-V6-ij0" firstAttribute="top" secondItem="uLu-xC-zB0" secondAttribute="top" id="Uys-YP-5oj"/>
+                        <constraint firstItem="g6o-AJ-MRV" firstAttribute="leading" secondItem="uLu-xC-zB0" secondAttribute="leading" id="Xsu-Vs-LKJ"/>
+                        <constraint firstAttribute="trailing" secondItem="g6o-AJ-MRV" secondAttribute="trailing" id="j6X-Le-zrU"/>
+                        <constraint firstItem="g6o-AJ-MRV" firstAttribute="top" secondItem="uLu-xC-zB0" secondAttribute="top" id="kLP-f2-JWj"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="CnC-7L-zB3" firstAttribute="top" secondItem="pIf-Mj-q5p" secondAttribute="top" id="6C8-La-Xr4"/>
+                <constraint firstAttribute="trailing" secondItem="uLu-xC-zB0" secondAttribute="trailing" id="RBY-hb-mwO"/>
+                <constraint firstAttribute="bottom" secondItem="CnC-7L-zB3" secondAttribute="bottom" id="RF0-fP-Tvc"/>
+                <constraint firstAttribute="trailing" secondItem="CnC-7L-zB3" secondAttribute="trailing" id="S2U-IN-7kx"/>
+                <constraint firstAttribute="bottom" secondItem="uLu-xC-zB0" secondAttribute="bottom" id="Svj-d4-EVs"/>
+                <constraint firstItem="qIt-V6-ij0" firstAttribute="bottom" secondItem="gNl-hT-lQN" secondAttribute="bottom" id="aDP-E8-hSX"/>
+                <constraint firstItem="CnC-7L-zB3" firstAttribute="leading" secondItem="pIf-Mj-q5p" secondAttribute="leading" id="j6O-LP-flB"/>
+                <constraint firstItem="uLu-xC-zB0" firstAttribute="leading" secondItem="pIf-Mj-q5p" secondAttribute="leading" id="weH-ya-ajb"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="gNl-hT-lQN"/>
+            <point key="canvasLocation" x="30" y="38.028169014084504"/>
+        </view>
+    </objects>
+</document>

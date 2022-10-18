@@ -1,0 +1,4 @@
+# You can validate the YAML config file at http://yaml-online-parser.appspot.com
+# Specify libraries to be excluded.
+exclude:
+  - FLEX

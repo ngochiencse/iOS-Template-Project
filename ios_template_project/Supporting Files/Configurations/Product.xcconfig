@@ -1,0 +1,15 @@
+//
+//  Product.xcconfig
+//  ios_template_project
+//
+//  Created by Hien Pham on 8/22/19.
+//  Copyright © 2019 BraveSoft Vietnam. All rights reserved.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+environmentType = product
+
+apiHost = https:/$()/my-json-server.typicode.com/
+apiPath = hienphambravesoft/API-Sample/

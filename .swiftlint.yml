@@ -1,0 +1,11 @@
+identifier_name:
+  excluded:
+    - id
+
+included:
+  - ios_template_project
+
+excluded:
+  - Pods
+  - Generated
+  - ios_template_projectTests
