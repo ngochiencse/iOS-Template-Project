@@ -1,5 +1,5 @@
 # iOS Template Project
-This is a template project for ios application development using MVVM and Coordinator.  
+This is a template project for ios application development.  
 
 [TOC]
 
@@ -521,15 +521,29 @@ class LoginViewModelImpl: LoginViewModel {
 }
 ```
 #### `LoadingIndicatorViewModel`
-Show loading indicator is one the most common task when performing async task in ios app. This ViewModel is created to help show loading indicator more easily. To use it, similiar to `LoadingIndicatorViewModel`, you can use `BasicViewModel` which has already integrated `AlertPresentableViewModel` and will be described in detail later. Or you can implement protocol `LoadingIndicatorViewModel` by yourself like `AlertPresentableViewModel`.
-In `LoadingIndicatorViewModel` there is 2 property corresponding to control displaying [MBProgressHUD](https://github.com/jdg/MBProgressHUD) and `UIActivityIndicatorView`:
-- `showProgressHUD`: Control displaying [MBProgressHUD](https://github.com/jdg/MBProgressHUD).
-- `showIndicator`: Control displaying `UIActivityIndicatorView`.  
+Show loading indicator is one the most common task when performing async task in ios app. This ViewModel is created to help show loading indicator more easily. 
+In `LoadingIndicatorViewModel` there is 1 property corresponding to control displaying `UIActivityIndicatorView`:
+- `showIndicator` (Bool): Control displaying `UIActivityIndicatorView`.  
+
+#### `ProgressHUDViewModel`
+This view model handle Control displaying [MBProgressHUD](https://github.com/jdg/MBProgressHUD). In `ProgressHUDViewModel` there is property `showProgressHUD` (Bool) corresponding to this task.
+**Note**: In this template the `ProgressHUDViewModel` is mainly used as shared singleton across all screens. If you want customnize another instance, you can input value to `progressHUD` in `init` method of `BasicViewModelImpl` as follow:  
+
+```swift
+class BasicViewModelImpl: NSObject, BasicViewModel {
+	// ...
+	init(progressHUD: ProgressHUDViewModel = ProgressHUDViewModelImpl.shared) {
+        self.progressHUD = progressHUD
+        super.init()
+    }
+}
+```
 
 #### `BasicViewModel`
 `BasicViewModel` is a convenient ViewModel which contains frequently used logic modules including:
 - `AlertPresentableViewModel`: Check section `AlertPresentableViewModel` above.
 - `LoadingIndicatorViewModel`: Check section `LoadingIndicatorViewModel` above.
+- `ProgressHUDViewModel`: Check section `ProgressHUDViewModel` above.
 
 `BasicViewModel` has alread been integrated into `BaseViewController`. So whenever you declare a subclass of `BaseViewController` you can retrieve and use like this:
 ```swift
@@ -601,7 +615,7 @@ class LoginViewModelImpl: NSObject, LoginViewModel {
             return
         }
 
-        basicViewModel.showProgressHUD.accept(true)
+        basicViewModel.progressHUD.showProgressHUD.accept(true)
         basicViewModel.api.request(MultiTarget(SampleTarget.login(email: emailClean, password: passwordClean))).subscribe { event in
             switch event {
             case .success(_):
@@ -611,7 +625,7 @@ class LoginViewModelImpl: NSObject, LoginViewModel {
             	// Handle error
                 break
             }
-            self.basicViewModel.showProgressHUD.accept(false)
+            self.basicViewModel.progressHUD.showProgressHUD.accept(false)
         }.disposed(by: rx.disposeBag)
     }
 }
@@ -792,4 +806,4 @@ This template's depends mostly on [github](https://github.com/), the others are 
 
 # Author
 
-Hien, ngochiencse@gmail.com
+Hien, hienpham@bravesoft.com.vn
