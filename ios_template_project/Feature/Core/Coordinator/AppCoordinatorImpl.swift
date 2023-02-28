@@ -34,7 +34,8 @@ class AppCoordinatorImpl: NSObject, AppCoordinator {
         Observable
             .combineLatest(
                 service.pushNotification.asObservable(), currentFlow.asObservable())
-            .observeOn(MainScheduler.instance).subscribe(onNext: {[weak self] (values) in
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: {[weak self] (values) in
                 let (pushNotificationWrapped, currentFlow) = values
                 guard let self = self, currentFlow == .main else { return }
 
@@ -43,7 +44,8 @@ class AppCoordinatorImpl: NSObject, AppCoordinator {
                     self.service.didHandlePushNotification()
                     return
                 }
-            }).disposed(by: rx.disposeBag)
+            })
+            .disposed(by: rx.disposeBag)
     }
 
     func switchFlow(to appFlow: AppFlow, animated: Bool) {

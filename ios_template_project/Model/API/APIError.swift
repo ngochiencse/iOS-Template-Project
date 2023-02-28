@@ -8,6 +8,7 @@
 
 import Foundation
 import Moya
+import Alamofire
 
 protocol LocalizedAppError {
     var appErrorDescription: String? { get }
@@ -77,5 +78,30 @@ struct SimpleError: Error {
 extension SimpleError: LocalizedAppError {
     var appErrorDescription: String? {
         return message
+    }
+}
+
+extension Error {
+    /*
+     Check if the error returned by Moya is network error
+     */
+    var isNetworkError: Bool {
+        guard let moyaError = self as? MoyaError,
+              case MoyaError.underlying(let underlyingError, _) = moyaError else {
+            return false
+        }
+
+        // Handle no internet connection automatically if needed
+        if case AFError.sessionTaskFailed(error: let sessionError) = underlyingError,
+           let urlError = sessionError as? URLError,
+           urlError.code == URLError.Code.notConnectedToInternet ||
+            urlError.code == URLError.Code.timedOut ||
+            urlError.code == URLError.Code.dataNotAllowed ||
+            urlError.code == URLError.Code.networkConnectionLost ||
+            urlError.code == URLError.Code.cannotConnectToHost {
+            return true
+        }
+
+        return false
     }
 }

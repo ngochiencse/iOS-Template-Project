@@ -20,16 +20,12 @@ class APIOperation<T>: AsyncOperation {
     }
 
     override func main() {
-        disposable = single.subscribe {[weak self] (event) in
-            guard let self = self else { return }
-            switch event {
-            case .success(let value):
-                self.value = value
-            case .error(let error):
-                self.error = error
-            }
-            self.state = .isFinished
-        }
+        disposable = single.subscribe(
+            onSuccess: {[weak self] value in
+                self?.value = value
+            }, onError: {[weak self] error in
+                self?.error = error
+            })
         disposable?.disposed(by: rx.disposeBag)
     }
 

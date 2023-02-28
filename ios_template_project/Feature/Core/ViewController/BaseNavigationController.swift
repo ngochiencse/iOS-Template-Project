@@ -17,29 +17,53 @@ class BaseNavigationController: UINavigationController {
     }
 
     fileprivate func setUp() {
-        // Custom navigation bar title
-        let titleTextColor: UIColor = UIColor(red: 120/255.0, green: 132/255.0, blue: 158/255.0, alpha: 1.0)
-        self.navigationBar.titleTextAttributes = [
-            .foregroundColor: titleTextColor,
-            .font: UIFont.systemFont(ofSize: 20)
-        ]
+        if #available(iOS 13, *) {
+            let appearance = UINavigationBarAppearance()
 
-        // Custom navigation bar background
-        self.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        self.navigationBar.shadowImage = UIImage()
-        self.navigationBar.barTintColor = .white
-        self.navigationBar.isTranslucent = false
-        self.navigationBar.layer.shadowColor = UIColor.black.withAlphaComponent(0.15).cgColor
-        self.navigationBar.layer.shadowOffset = CGSize(width: 0, height: 1)
-        self.navigationBar.layer.shadowOpacity = 1
+            // Custom navigation bar background
+            appearance.configureWithOpaqueBackground()
+            appearance.backgroundColor = .white
+            appearance.shadowImage = UIImage()
+            appearance.backgroundImage = UIImage()
 
-        // Custom back button
-        let image: UIImage? = UIImage(named: "btn_back")
-        self.navigationBar.backIndicatorImage = image?.withRenderingMode(.alwaysOriginal)
-        self.navigationBar.backIndicatorTransitionMaskImage = image?.withRenderingMode(.alwaysOriginal)
-        let barAppearance: UIBarButtonItem =
-            UIBarButtonItem.appearance(whenContainedInInstancesOf: [type(of: self)])
-        barAppearance.setBackButtonTitlePositionAdjustment(UIOffset(horizontal: 0, vertical: -3), for: .default)
+            // Custom navigation bar title
+            let titleTextColor: UIColor = UIColor(red: 120/255.0, green: 132/255.0, blue: 158/255.0, alpha: 1.0)
+            appearance.titleTextAttributes = [
+                .foregroundColor: titleTextColor,
+                .font: UIFont.systemFont(ofSize: 20)
+            ]
+            navigationBar.standardAppearance = appearance
+            navigationBar.scrollEdgeAppearance = navigationBar.standardAppearance
+
+            // Custom back button
+            let image: UIImage? = UIImage(named: "btn_back")
+            appearance.setBackIndicatorImage(image?.withRenderingMode(.alwaysOriginal),
+                                             transitionMaskImage: image?.withRenderingMode(.alwaysOriginal))
+            let barAppearance: UIBarButtonItem =
+                UIBarButtonItem.appearance(whenContainedInInstancesOf: [type(of: self)])
+            barAppearance.setBackButtonTitlePositionAdjustment(UIOffset(horizontal: 0, vertical: -3), for: .default)
+        } else {
+            // Custom navigation bar title
+            let titleTextColor: UIColor = UIColor(red: 120/255.0, green: 132/255.0, blue: 158/255.0, alpha: 1.0)
+            self.navigationBar.titleTextAttributes = [
+                .foregroundColor: titleTextColor,
+                .font: UIFont.systemFont(ofSize: 20)
+            ]
+
+            // Custom navigation bar background
+            self.navigationBar.setBackgroundImage(UIImage(), for: .default)
+            self.navigationBar.shadowImage = UIImage()
+            self.navigationBar.barTintColor = .white
+            self.navigationBar.isTranslucent = false
+
+            // Custom back button
+            let image: UIImage? = UIImage(named: "btn_back")
+            self.navigationBar.backIndicatorImage = image?.withRenderingMode(.alwaysOriginal)
+            self.navigationBar.backIndicatorTransitionMaskImage = image?.withRenderingMode(.alwaysOriginal)
+            let barAppearance: UIBarButtonItem =
+                UIBarButtonItem.appearance(whenContainedInInstancesOf: [type(of: self)])
+            barAppearance.setBackButtonTitlePositionAdjustment(UIOffset(horizontal: 0, vertical: -3), for: .default)
+        }
     }
 
     override func didReceiveMemoryWarning() {

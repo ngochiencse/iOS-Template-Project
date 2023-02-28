@@ -48,6 +48,7 @@ class ArticleViewModelImpl: NSObject, ArticleViewModel {
         let offset = loadMore ? articles.value.count : 0
         api.request(MultiTarget(SampleTarget.articleList(limit: limit, offset: offset)))
             .map([ArticleInfo].self, using: JSONDecoder.decoderAPI(), failsOnEmptyData: false)
+            .catchCommonError()
             .subscribe {[weak self] event in
                 guard let self = self else { return }
                 switch event {
@@ -70,15 +71,17 @@ class ArticleViewModelImpl: NSObject, ArticleViewModel {
     func deleteArticleAtIndex(index: NSInteger) {
         let articleInfo = self.articles.value[index]
         if let articleId = articleInfo.id {
-            basicViewModel.showProgressHUD.accept(true)
+            basicViewModel.progressHUD.showProgressHUD.accept(true)
 
-            api.request(MultiTarget(SampleTarget.deleteArticle(id: articleId))).subscribe({[weak self] (_) in
-                guard let self = self else { return }
-                var mutableArticles = Array(self.articles.value)
-                mutableArticles.remove(at: index)
-                self.articles.accept(mutableArticles)
-                self.basicViewModel.showProgressHUD.accept(false)
-            }).disposed(by: rx.disposeBag)
+            api.request(MultiTarget(SampleTarget.deleteArticle(id: articleId)))
+                .catchCommonError()
+                .subscribe({[weak self] (_) in
+                    guard let self = self else { return }
+                    var mutableArticles = Array(self.articles.value)
+                    mutableArticles.remove(at: index)
+                    self.articles.accept(mutableArticles)
+                    self.basicViewModel.progressHUD.showProgressHUD.accept(false)
+                }).disposed(by: rx.disposeBag)
         }
     }
 }

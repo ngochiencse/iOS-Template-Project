@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-protocol LoginFormViewModel: class {
+protocol LoginFormViewModel: AnyObject {
     var basicViewModel: BasicViewModel { get }
     var email: BehaviorRelay<String?> { get set }
     var password: BehaviorRelay<String?> { get set }

@@ -35,18 +35,17 @@ class PostArticleFormViewModelImpl: NSObject, PostArticleFormViewModel {
             let image: UIImage = image.value
         else { return }
 
-        basicViewModel.showProgressHUD.accept(true)
+        basicViewModel.progressHUD.showProgressHUD.accept(true)
         api.request(MultiTarget(SampleTarget.post(title: title, content: content, image: image)))
             .observeOn(MainScheduler.instance)
-            .subscribe { [weak self] event in
-                guard let self = self else { return }
+            .subscribe { event in
                 switch event {
                 case .success:
                     self.basicViewModel.alertModel.accept(AlertModel(message: "Post succeeded"))
-                case let .error(error):
+                case .error(let error):
                     self.basicViewModel.alertModel.accept(AlertModel(message: error.localizedDescription))
                 }
-                self.basicViewModel.showProgressHUD.accept(false)
-            }.disposed(by: rx.disposeBag)
+            }
+            .disposed(by: rx.disposeBag)
     }
 }

@@ -11,7 +11,6 @@ import RxCocoa
 import MBProgressHUD
 
 protocol LoadingIndicatorViewModel {
-    var showProgressHUD: BehaviorRelay<Bool> { get set }
     var showIndicator: BehaviorRelay<Bool> { get set }
 }
 
@@ -20,6 +19,5 @@ protocol LoadingIndicatorPresentableView {
 }
 
 protocol Loading where Self: UIView {
-    var progressHUD: MBProgressHUD { get }
     var activityIndicator: UIActivityIndicatorView { get }
 }

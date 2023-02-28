@@ -57,7 +57,8 @@ class RootViewController: SwitchNavigationController, AlertPresentableView, Load
      It'll present an alert on top most controller instead of current view controller.
      */
     func bindToAlertsTop() {
-        viewModel.isAccessTokenExpired.distinctUntilChanged().observeOn(MainScheduler.instance)
+        viewModel.isAccessTokenExpired.distinctUntilChanged()
+            .observeOn(MainScheduler.instance)
             .filter({ (value: Bool) -> Bool in
                 return (value == true)
             }).subscribe(onNext: {[weak self] (_: Bool) in
@@ -71,7 +72,7 @@ class RootViewController: SwitchNavigationController, AlertPresentableView, Load
                 let topController: UIViewController? = self?.topMostController()
 
                 // Priority of access token expired alert will be highest, so other alert will be dismissed.
-                if let _: UIAlertController = topController?.presentedViewController as? UIAlertController {
+                if let _ = topController?.presentedViewController as? UIAlertController {
                     topController?.dismiss(animated: true, completion: {
                         topController?.present(alert, animated: true, completion: nil)
                     })

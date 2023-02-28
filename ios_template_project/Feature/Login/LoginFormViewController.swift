@@ -66,7 +66,7 @@ class LoginFormViewController: FormViewController {
             row.placeholder = "メールアドレス入力"
             row.add(rule: RuleRequired(msg: "エラー表示はなし"))
             #if DEBUG
-            row.value = "template@bravesoft.com.vn"
+            row.value = "hello@world.com.vn"
             #endif
         })
         <<< FormPasswordRow("password", { row in

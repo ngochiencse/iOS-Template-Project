@@ -10,6 +10,7 @@ import Foundation
 import Moya
 
 protocol BasicViewModel: AlertPresentableViewModel, LoadingIndicatorViewModel {
+    var progressHUD: ProgressHUDViewModel { get }
 }
 
 protocol BasicViewPresentableView: AlertPresentableView, LoadingIndicatorPresentableView {

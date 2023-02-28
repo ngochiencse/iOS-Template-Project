@@ -58,7 +58,7 @@ class ArticleViewModelMock: NSObject, ArticleViewModel {
 
     func getArticlesWithLoadMore(loadMore: Bool, showIndicator: Bool) {
         if showIndicator == true {
-            basicViewModel.showProgressHUD.accept(true)
+            basicViewModel.progressHUD.showProgressHUD.accept(true)
         }
 
         // Create mock data
@@ -81,7 +81,7 @@ class ArticleViewModelMock: NSObject, ArticleViewModel {
         isLoading = true
 
         if showIndicator == true {
-            basicViewModel.showProgressHUD.accept(true)
+            basicViewModel.progressHUD.showProgressHUD.accept(true)
         }
 
         let offset = loadMore ? articles.value.count : 0
@@ -104,7 +104,7 @@ class ArticleViewModelMock: NSObject, ArticleViewModel {
                 case .error:
                     break
                 }
-                self.basicViewModel.showProgressHUD.accept(false)
+                self.basicViewModel.progressHUD.showProgressHUD.accept(false)
                 self.endLoadingAnimation.onNext(())
                 self.isLoading = false
             }.disposed(by: rx.disposeBag)
@@ -112,12 +112,12 @@ class ArticleViewModelMock: NSObject, ArticleViewModel {
 
     func deleteArticleAtIndex(index: NSInteger) {
         guard let articleInfo = self.cellViewModels.value[index].data as? ArticleInfo else { return }
-        if let _ = articleInfo.id {
-            basicViewModel.showProgressHUD.accept(true)
+        if articleInfo.id != nil {
+            basicViewModel.progressHUD.showProgressHUD.accept(true)
             var mutableArticles = Array(self.articles.value)
             mutableArticles.remove(at: index)
             self.articles.accept(mutableArticles)
-            self.basicViewModel.showProgressHUD.accept(false)
+            self.basicViewModel.progressHUD.showProgressHUD.accept(false)
         }
     }
 }

@@ -13,7 +13,6 @@ import FLEX
 import CocoaLumberjack
 import Firebase
 import FirebaseCore
-import FirebaseInstanceID
 import FirebaseMessaging
 import RxSwift
 import SwiftDate

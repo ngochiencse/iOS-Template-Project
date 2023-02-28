@@ -20,43 +20,31 @@ class Provider<Target> where Target: Moya.TargetType {
     }
 }
 
-extension Single where Element: Moya.Response {
-    func handleCommonError(_ error: Error,
-                           autoHandleNoInternetConnection: Bool,
-                           autoHandleAPIError: Bool) -> Single<Element> {
-        guard case MoyaError.underlying(let underlyingError, _) = error else {
-            return Single<Element>.error(error)
-        }
-        // Handle no internet connection automatically if needed
-        if case AFError.sessionTaskFailed(error: let sessionError) = underlyingError,
-           let urlError = sessionError as? URLError,
-           urlError.code == URLError.Code.notConnectedToInternet ||
-            urlError.code == URLError.Code.timedOut ||
-            urlError.code == URLError.Code.dataNotAllowed {
-            if autoHandleNoInternetConnection == true {
-                NotificationCenter.default.post(name: .AutoHandleNoInternetConnectionError, object: error)
-                return Single<Element>.error(APIError.ignore(error))
-            } else {
-                return Single<Element>.error(error)
-            }
-        }
-        // Handle api error automatically if needed
-        else if autoHandleAPIError == true {
-            NotificationCenter.default.post(name: .AutoHandleAPIError, object: error)
-            return Single<Element>.error(APIError.ignore(error))
-        } else {
-            return Single<Element>.error(error)
+extension Single {
+    func catchCommonError(autoHandleNoInternetConnection: Bool = true,
+                          autoHandleAPIError: Bool = true) -> PrimitiveSequence<Trait, Element> {
+        return catchError {(error) in
+            let handledError =
+                ErrorHandler.shared.handleCommonError(error,
+                                                      autoHandleNoInternetConnection: autoHandleNoInternetConnection,
+                                                      autoHandleAPIError: autoHandleAPIError)
+            let catched: PrimitiveSequence<Trait, Element>! = Single<Element>.error(handledError)
+                as? PrimitiveSequence<Trait, Element>
+            return catched
         }
     }
+}
 
-    func catchCommonError(autoHandleNoInternetConnection: Bool,
-                          autoHandleAPIError: Bool) -> Single<Element> {
-        guard let unwrapped = self as? Single<Element> else { return Single.error(APIError.systemError) }
-
-        return unwrapped.catchError { (error) -> Single<Element> in
-            self.handleCommonError(error,
-                                   autoHandleNoInternetConnection: autoHandleNoInternetConnection,
-                                   autoHandleAPIError: autoHandleAPIError)
+extension Observable {
+    func catchCommonError(autoHandleNoInternetConnection: Bool = true,
+                          autoHandleAPIError: Bool = true) -> Observable<Element> {
+        return catchError {(error) in
+            let handledError =
+                ErrorHandler.shared.handleCommonError(error,
+                                                      autoHandleNoInternetConnection: autoHandleNoInternetConnection,
+                                                      autoHandleAPIError: autoHandleAPIError)
+            let catched = Observable<Element>.error(handledError)
+            return catched
         }
     }
 }

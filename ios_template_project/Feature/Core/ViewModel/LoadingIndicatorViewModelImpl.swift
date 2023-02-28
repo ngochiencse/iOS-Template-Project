@@ -15,37 +15,21 @@ import NSObject_Rx
 
 extension LoadingIndicatorPresentableView where Self: UIViewController {
     @discardableResult
-    func bindToLoadingIndicator() -> [Disposable] {
+    func bindToLoadingIndicator() -> Disposable {
         view.bindLoadingIndicator(loadingIndicatorViewModel)
     }
 }
 
 extension LoadingIndicatorPresentableView where Self: UIView {
     @discardableResult
-    func bindToLoadingIndicator() -> [Disposable] {
+    func bindToLoadingIndicator() -> Disposable {
         return bindLoadingIndicator(loadingIndicatorViewModel)
     }
 }
 
 extension UIView {
     @discardableResult
-    func bindLoadingIndicator(_ loadingIndicatorViewModel: LoadingIndicatorViewModel) -> [Disposable] {
-        var disposables: [Disposable] = []
-
-        let progressHUDDisposable = loadingIndicatorViewModel.showProgressHUD
-            .observeOn(MainScheduler.instance).subscribe(onNext: {[weak self] (show: Bool) in
-                if show == true {
-                    if let progressHUD = self?.progressHUD {
-                        self?.addSubview(progressHUD)
-                    }
-                    self?.progressHUD.show(animated: true)
-                } else {
-                    self?.progressHUD.hide(animated: true)
-                }
-            })
-        progressHUDDisposable.disposed(by: rx.disposeBag)
-        disposables.append(progressHUDDisposable)
-
+    func bindLoadingIndicator(_ loadingIndicatorViewModel: LoadingIndicatorViewModel) -> Disposable {
         let indicatorDisposable = loadingIndicatorViewModel.showIndicator
             .observeOn(MainScheduler.instance).subscribe(onNext: {[weak self] (show: Bool) in
                 if show == true {
@@ -65,29 +49,16 @@ extension UIView {
                 }
             })
         indicatorDisposable.disposed(by: rx.disposeBag)
-        disposables.append(indicatorDisposable)
 
-        return disposables
+        return indicatorDisposable
     }
 }
 
 private struct AssociatedKeys {
     static var activityIndicator: UInt8 = 0
-    static var progressHUD: UInt8 = 1
 }
 
 extension UIView: Loading {
-    var progressHUD: MBProgressHUD {
-        let hud: MBProgressHUD
-        if let value = objc_getAssociatedObject(self, &AssociatedKeys.progressHUD) as? MBProgressHUD {
-            hud = value
-        } else {
-            hud = MBProgressHUD(view: self)
-            objc_setAssociatedObject(self, &AssociatedKeys.progressHUD, hud, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-        }
-        return hud
-    }
-
     var activityIndicator: UIActivityIndicatorView {
         let indicator: UIActivityIndicatorView
         if let value = objc_getAssociatedObject(self, &AssociatedKeys.activityIndicator) as? UIActivityIndicatorView {
@@ -102,6 +73,5 @@ extension UIView: Loading {
 }
 
 class LoadingIndicatorViewModelImpl: LoadingIndicatorViewModel {
-    var showProgressHUD: BehaviorRelay<Bool> = BehaviorRelay(value: false)
     var showIndicator: BehaviorRelay<Bool> = BehaviorRelay(value: false)
 }

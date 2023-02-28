@@ -10,6 +10,9 @@
 		0BE92F13256BC09500B45834 /* ArticleTableCellViewModelImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE92F12256BC09500B45834 /* ArticleTableCellViewModelImpl.swift */; };
 		0BE92F17256BC0B000B45834 /* ArticleTableCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE92F16256BC0B000B45834 /* ArticleTableCellViewModel.swift */; };
 		0BE92F26256CAEE100B45834 /* ArticleViewModelMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE92F25256CAEE100B45834 /* ArticleViewModelMock.swift */; };
+		0E67E56629ADAA7C00A4A3E2 /* ProgressHUDViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E67E56429ADAA7C00A4A3E2 /* ProgressHUDViewModel.swift */; };
+		0E67E56729ADAA7C00A4A3E2 /* ProgressHUDViewModelImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E67E56529ADAA7C00A4A3E2 /* ProgressHUDViewModelImpl.swift */; };
+		0E67E56929ADAC4800A4A3E2 /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E67E56829ADAC4800A4A3E2 /* ErrorHandler.swift */; };
 		0E78FF0D246B8F35000C2AC5 /* AppCoordinatorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E78FF0B246B8F34000C2AC5 /* AppCoordinatorService.swift */; };
 		0E78FF0E246B8F35000C2AC5 /* AppCoordinatorServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E78FF0C246B8F35000C2AC5 /* AppCoordinatorServiceImpl.swift */; };
 		0E845CE4243C5C9A00CB6F33 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E845CE3243C5C9A00CB6F33 /* AppDelegate.swift */; };
@@ -104,7 +107,6 @@
 		0E845E0B243C5E1100CB6F33 /* UpdateDeviceTokenServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E845D98243C5E1000CB6F33 /* UpdateDeviceTokenServiceImpl.swift */; };
 		0E845E0C243C5E1100CB6F33 /* LoginFormViewModelImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E845D9A243C5E1000CB6F33 /* LoginFormViewModelImpl.swift */; };
 		0E845E0D243C5E1100CB6F33 /* LoginFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E845D9B243C5E1000CB6F33 /* LoginFormViewModel.swift */; };
-		0E845E0F243C5E1100CB6F33 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E845D9D243C5E1000CB6F33 /* LoginViewController.swift */; };
 		0EE61F5F2580CFAC00D755A3 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0EE61F5E2580CFAC00D755A3 /* Settings.bundle */; };
 		2682817D264282D70081E685 /* LoginFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2682817B264282D70081E685 /* LoginFormViewController.swift */; };
 		2682817E264282D70081E685 /* LoginFormViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2682817C264282D70081E685 /* LoginFormViewController.xib */; };
@@ -134,6 +136,9 @@
 		0BE92F12256BC09500B45834 /* ArticleTableCellViewModelImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleTableCellViewModelImpl.swift; sourceTree = "<group>"; };
 		0BE92F16256BC0B000B45834 /* ArticleTableCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleTableCellViewModel.swift; sourceTree = "<group>"; };
 		0BE92F25256CAEE100B45834 /* ArticleViewModelMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleViewModelMock.swift; sourceTree = "<group>"; };
+		0E67E56429ADAA7C00A4A3E2 /* ProgressHUDViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressHUDViewModel.swift; sourceTree = "<group>"; };
+		0E67E56529ADAA7C00A4A3E2 /* ProgressHUDViewModelImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressHUDViewModelImpl.swift; sourceTree = "<group>"; };
+		0E67E56829ADAC4800A4A3E2 /* ErrorHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
 		0E78FF0B246B8F34000C2AC5 /* AppCoordinatorService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCoordinatorService.swift; sourceTree = "<group>"; };
 		0E78FF0C246B8F35000C2AC5 /* AppCoordinatorServiceImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCoordinatorServiceImpl.swift; sourceTree = "<group>"; };
 		0E845CE0243C5C9A00CB6F33 /* ios_template_project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ios_template_project.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -233,7 +238,6 @@
 		0E845D98243C5E1000CB6F33 /* UpdateDeviceTokenServiceImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateDeviceTokenServiceImpl.swift; sourceTree = "<group>"; };
 		0E845D9A243C5E1000CB6F33 /* LoginFormViewModelImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginFormViewModelImpl.swift; sourceTree = "<group>"; };
 		0E845D9B243C5E1000CB6F33 /* LoginFormViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginFormViewModel.swift; sourceTree = "<group>"; };
-		0E845D9D243C5E1000CB6F33 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		0EE61F5E2580CFAC00D755A3 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		2682817B264282D70081E685 /* LoginFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFormViewController.swift; sourceTree = "<group>"; };
 		2682817C264282D70081E685 /* LoginFormViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginFormViewController.xib; sourceTree = "<group>"; };
@@ -401,6 +405,7 @@
 		0E845D30243C5E1000CB6F33 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				0E67E56829ADAC4800A4A3E2 /* ErrorHandler.swift */,
 				0E845D31243C5E1000CB6F33 /* APIError.swift */,
 				0E845D32243C5E1000CB6F33 /* Target */,
 				0E845D3A243C5E1000CB6F33 /* Plugin */,
@@ -525,6 +530,8 @@
 				0E845D64243C5E1000CB6F33 /* BasicViewModelImpl.swift */,
 				0E845D65243C5E1000CB6F33 /* LoadingIndicatorViewModel.swift */,
 				0E845D66243C5E1000CB6F33 /* BasicViewModel.swift */,
+				0E67E56429ADAA7C00A4A3E2 /* ProgressHUDViewModel.swift */,
+				0E67E56529ADAA7C00A4A3E2 /* ProgressHUDViewModelImpl.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -623,7 +630,6 @@
 				0E845D9B243C5E1000CB6F33 /* LoginFormViewModel.swift */,
 				2682817B264282D70081E685 /* LoginFormViewController.swift */,
 				2682817C264282D70081E685 /* LoginFormViewController.xib */,
-				0E845D9D243C5E1000CB6F33 /* LoginViewController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -933,10 +939,11 @@
 				0E845DF8243C5E1100CB6F33 /* BaseNavigationController.swift in Sources */,
 				0E845DB2243C5E1000CB6F33 /* DictionaryUtils.swift in Sources */,
 				0E845DF7243C5E1100CB6F33 /* SwitchNavigationController.swift in Sources */,
+				0E67E56729ADAA7C00A4A3E2 /* ProgressHUDViewModelImpl.swift in Sources */,
+				0E67E56929ADAC4800A4A3E2 /* ErrorHandler.swift in Sources */,
 				0E845DF2243C5E1100CB6F33 /* AlertBuilder.swift in Sources */,
 				0E845DAA243C5E1000CB6F33 /* UrlDef.swift in Sources */,
 				0E845DF0243C5E1100CB6F33 /* MainCoordinator.swift in Sources */,
-				0E845E0F243C5E1100CB6F33 /* LoginViewController.swift in Sources */,
 				0E845E07243C5E1100CB6F33 /* RoundedUISampleViewController.swift in Sources */,
 				0E845E02243C5E1100CB6F33 /* ArticleViewController.swift in Sources */,
 				0BE92F26256CAEE100B45834 /* ArticleViewModelMock.swift in Sources */,
@@ -976,6 +983,7 @@
 				0E845DE1243C5E1100CB6F33 /* TutorialViewModelImpl.swift in Sources */,
 				0E845DD8243C5E1100CB6F33 /* APIMultipleViewModelImpl.swift in Sources */,
 				0E845E0C243C5E1100CB6F33 /* LoginFormViewModelImpl.swift in Sources */,
+				0E67E56629ADAA7C00A4A3E2 /* ProgressHUDViewModel.swift in Sources */,
 				0E845DEA243C5E1100CB6F33 /* BasicViewModelImpl.swift in Sources */,
 				0E845DB6243C5E1000CB6F33 /* Enum.swift in Sources */,
 				0E845DC2243C5E1100CB6F33 /* APIError.swift in Sources */,

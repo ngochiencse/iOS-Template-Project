@@ -26,23 +26,17 @@ class ProviderAPIWithAccessToken<Target>: Provider<Target> where Target: Moya.Ta
     let provider: MoyaProvider<Target>
     let prefs: PrefsAccessToken
     let autoHandleAccessTokenExpired: Bool
-    let autoHandleAPIError: Bool
-    let autoHandleNoInternetConnection: Bool
 
     /**
      Init Provider, similiar to Moya.
      - Parameter prefs: Access token storage
      - Parameter autoHandleAccessTokenExpired: If `true` then errors which caused the app to
      auto logout will be handled automatically, and will be transformed into `APIError.ignore`
-     - Parameter autoHandleAccountSuspendedStop: If `true` then errors which caused the app to
-     auto logout will be handled automatically, and will be transformed into `APIError.ignore`
      - Parameter autoHandleAPIError: If `true` then any error thrown will be handled automatically,
      and will be transformed into `APIError.ignore`
      */
     init(prefs: PrefsAccessToken & PrefsRefreshToken = PrefsImpl.default,
          autoHandleAccessTokenExpired: Bool = true,
-         autoHandleNoInternetConnection: Bool = true,
-         autoHandleAPIError: Bool = true,
          endpointClosure: @escaping MoyaProvider<Target>.EndpointClosure = MoyaProvider.defaultEndpointMapping,
          requestClosure: @escaping MoyaProvider<Target>.RequestClosure = MoyaProvider<Target>.defaultRequestMapping,
          stubClosure: @escaping MoyaProvider<Target>.StubClosure = MoyaProvider.neverStub,
@@ -51,8 +45,6 @@ class ProviderAPIWithAccessToken<Target>: Provider<Target> where Target: Moya.Ta
          trackInflights: Bool = false) {
         self.prefs = prefs
         self.autoHandleAccessTokenExpired = autoHandleAccessTokenExpired
-        self.autoHandleAPIError = autoHandleAPIError
-        self.autoHandleNoInternetConnection = autoHandleNoInternetConnection
 
         // Set up plugins
         var mutablePlugins: [PluginType] = plugins
@@ -102,7 +94,5 @@ class ProviderAPIWithAccessToken<Target>: Provider<Target> where Target: Moya.Ta
                     return Single.error(error)
                 }
             })
-            .catchCommonError(autoHandleNoInternetConnection: autoHandleNoInternetConnection,
-                              autoHandleAPIError: autoHandleAPIError)
     }
 }

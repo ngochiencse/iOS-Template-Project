@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol AuthCoordinatorDelegate: class {
+protocol AuthCoordinatorDelegate: AnyObject {
     func authCoordinatorDidFinish(_ authCoordinator: AuthCoordinator)
 }
 
@@ -22,15 +22,15 @@ class AuthCoordinator: NSObject, Coordinator {
     }
 
     func start() {
-        let viewController: LoginViewController = LoginViewController()
+        let viewController: LoginFormViewController = LoginFormViewController(viewModel: LoginFormViewModelImpl())
         viewController.delegate = self
         navigationController.pushViewController(viewController, animated: false)
         root.showViewController(navigationController, animated: true)
     }
 }
 
-extension AuthCoordinator: LoginViewControllerDelegate {
-    func loginViewControllerDidFinish(_ loginViewController: LoginViewController) {
+extension AuthCoordinator: LoginFormViewControllerDelegate {
+    func loginFormViewControllerDidFinish(_ loginFormViewController: LoginFormViewController) {
         delegate?.authCoordinatorDidFinish(self)
     }
 }

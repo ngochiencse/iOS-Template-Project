@@ -61,7 +61,7 @@ class WebViewController: BaseViewController, UIWebViewDelegate {
     }
 
     private func reloadWebView() {
-        basicViewModel.showProgressHUD.accept(true)
+        basicViewModel.progressHUD.showProgressHUD.accept(true)
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         if self.lastRequest == nil {
             self.webView.load(request)
@@ -134,7 +134,7 @@ extension WebViewController: WKNavigationDelegate {
     }
 
     private func onFinishLoading() {
-        basicViewModel.showProgressHUD.accept(false)
+        basicViewModel.progressHUD.showProgressHUD.accept(false)
         if webView.isLoading {
             return
         }
@@ -158,7 +158,7 @@ extension WebViewController: WKNavigationDelegate {
         DDLogError("WebView didFailLoadWithError: \(String(describing: error))")
         if !webView.isLoading {
             UIApplication.shared.isNetworkActivityIndicatorVisible = false
-            basicViewModel.showProgressHUD.accept(false)
+            basicViewModel.progressHUD.showProgressHUD.accept(false)
         }
         let code = (error as NSError).code
         if code != NSURLErrorCancelled {

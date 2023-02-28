@@ -51,19 +51,29 @@ class RootViewModelImpl: NSObject, RootViewModel {
     }
 
     @objc func handleAPIError(_ notification: Notification) {
-        if let error: Error = notification.object as? Error {
-            if case APIError.ignore(_) = error {
-                return
-            }
+        guard let error: Error = notification.object as? Error else { return }
 
-            if let localizedError: LocalizedAppError = error as? LocalizedAppError,
-               let message = localizedError.appErrorDescription {
-                basicViewModel.alertModel.accept(AlertModel(message: message))
-            } else {
-                basicViewModel.alertModel.accept(AlertModel(message: "接続に失敗しました。"))
-            }
+        // Don't handle ignore error
+        if case APIError.ignore(_) = error {
+            return
+        }
+
+        let messageError: String?
+
+        if let localizedError: LocalizedAppError = error as? LocalizedAppError,
+           let message = localizedError.appErrorDescription {
+            messageError = message
         } else {
-            basicViewModel.alertModel.accept(AlertModel(message: "接続に失敗しました。"))
+            messageError = "システムエラーが発生しました。"
+        }
+
+        if let unwrapped = messageError {
+            let alert = AlertModel(actionModels:
+                                    [AlertModel.ActionModel(title: "はい", style: .default, handler: nil)],
+                                   title: nil,
+                                   message: unwrapped,
+                                   prefferedStyle: .alert)
+            basicViewModel.alertModel.accept(alert)
         }
     }
 

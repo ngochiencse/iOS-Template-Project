@@ -1,84 +1,84 @@
 name: Alamofire, nameSpecified: 
 body: Copyright (c) 2014-2…
-version: 5.4.1
+version: 5.6.4
 
 name: BraveTabbarController, nameSpecified: 
 body: MIT License
 
 Copyrig…
-version: 1.1.5
+version: 1.1.7
 
 name: CocoaLumberjack, nameSpecified: 
 body: BSD 3-Clause License…
-version: 3.7.0
+version: 3.7.4
 
 name: Eureka, nameSpecified: 
 body: The MIT License (MIT…
-version: 5.3.2
+version: 5.3.6
 
 name: Firebase, nameSpecified: 
 body: 
                    …
-version: 7.5.0
+version: 9.6.0
 
 name: FirebaseAnalytics, nameSpecified: 
-body: Copyright 2021 Googl…
-version: 7.5.0
+body: Copyright 2022 Googl…
+version: 9.6.0
 
 name: FirebaseCore, nameSpecified: 
 body: 
                    …
-version: 7.5.0
+version: 9.6.0
 
 name: FirebaseCoreDiagnostics, nameSpecified: 
 body: 
                    …
-version: 7.5.0
+version: 9.6.0
+
+name: FirebaseCoreInternal, nameSpecified: 
+body: 
+                   …
+version: 9.6.0
 
 name: FirebaseInstallations, nameSpecified: 
 body: 
                    …
-version: 7.5.0
-
-name: FirebaseInstanceID, nameSpecified: 
-body: 
-                   …
-version: 7.5.0
+version: 9.6.0
 
 name: FirebaseMessaging, nameSpecified: 
 body: 
                    …
-version: 7.5.0
+version: 9.6.0
 
 name: FSPagerView, nameSpecified: 
 body: Copyright (c) 2017 F…
 version: 0.8.3
 
 name: GoogleAppMeasurement, nameSpecified: 
-body: Copyright 2021 Googl…
-version: 7.5.0
+body: Copyright 2022 Googl…
+version: 9.6.0
 
 name: GoogleDataTransport, nameSpecified: 
 body: 
                    …
-version: 8.2.0
+version: 9.2.1
 
 name: GoogleUtilities, nameSpecified: 
 body: 
                    …
-version: 7.2.2
+version: 7.11.0
 
 name: ImageRow, nameSpecified: 
 body: MIT License
 
 Copyrig…
-version: 4.0.0
+version: 4.1.0
 
 name: LicensePlist, nameSpecified: 
 body: MIT License
 
 Copyrig…
-version: 3.0.5
+version: 3.24.1
 
 name: MBProgressHUD, nameSpecified: 
 body: Copyright © 2009-201…
@@ -90,7 +90,7 @@ version: 14.0.0
 
 name: nanopb, nameSpecified: 
 body: Copyright (c) 2011 P…
-version: 2.30907.0
+version: 2.30909.0
 
 name: NSObject+Rx, nameSpecified: 
 body: The MIT License (MIT…
@@ -99,7 +99,7 @@ version:
 name: PromisesObjC, nameSpecified: 
 body: 
                    …
-version: 1.2.12
+version: 2.2.0
 
 name: RoundedUI, nameSpecified: 
 body: MIT License
@@ -114,21 +114,21 @@ version: 0.2.5
 name: RxCocoa, nameSpecified: 
 body: **The MIT License**
 …
-version: 5.1.1
+version: 5.1.3
 
 name: RxRelay, nameSpecified: 
 body: **The MIT License**
 …
-version: 5.1.1
+version: 5.1.3
 
 name: RxSwift, nameSpecified: 
 body: **The MIT License**
 …
-version: 5.1.1
+version: 5.1.3
 
 name: SDWebImage, nameSpecified: 
 body: Copyright (c) 2009-2…
-version: 5.10.4
+version: 5.15.4
 
 name: SnapKit, nameSpecified: 
 body: Copyright (c) 2011-P…
@@ -140,7 +140,7 @@ version: 5.1.0
 
 name: SwiftLint, nameSpecified: 
 body: The MIT License (MIT…
-version: 0.42.0
+version: 0.50.3
 
 name: UIScrollView-InfiniteScroll, nameSpecified: 
 body: The MIT License (MIT…
@@ -148,4 +148,4 @@ version: 1.1.0
 
 add-version-numbers: true
 
-LicensePlist Version: 3.0.5
+LicensePlist Version: 3.24.1

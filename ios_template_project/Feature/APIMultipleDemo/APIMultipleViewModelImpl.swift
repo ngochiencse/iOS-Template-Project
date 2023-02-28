@@ -23,11 +23,12 @@ class APIMultipleViewModelImpl: NSObject, APIMultipleViewModel {
     }
 
     func runOperationQueue() {
-        basicViewModel.showProgressHUD.accept(true)
+        basicViewModel.progressHUD.showProgressHUD.accept(true)
         let login = APIOperation<Response>(single:
                                             api
                                             .request(MultiTarget(SampleTarget.login(email: "", password: "")))
                                             .filterSuccessfulStatusCodes()
+                                            .catchCommonError()
         )
         let getArticle = APIOperation<[ArticleInfo]>(single:
                                                         api
@@ -35,10 +36,11 @@ class APIMultipleViewModelImpl: NSObject, APIMultipleViewModel {
                                                                     SampleTarget.articleList(limit: 30, offset: 0)))
                                                         .filterSuccessfulStatusCodes()
                                                         .map([ArticleInfo].self)
+                                                        .catchCommonError()
         )
         let completion = BlockOperation {
             DispatchQueue.main.async {
-                self.basicViewModel.showProgressHUD.accept(false)
+                self.basicViewModel.progressHUD.showProgressHUD.accept(false)
                 self.basicViewModel.alertModel.accept(AlertModel(message: "Success"))
             }
         }
@@ -54,7 +56,7 @@ class APIMultipleViewModelImpl: NSObject, APIMultipleViewModel {
     }
 
     func runOneByOne() {
-        basicViewModel.showProgressHUD.accept(true)
+        basicViewModel.progressHUD.showProgressHUD.accept(true)
         api
             .request(MultiTarget(SampleTarget.login(email: "", password: "")))
             .flatMap {[weak self] (_) -> Single<[ArticleInfo]> in
@@ -66,16 +68,17 @@ class APIMultipleViewModelImpl: NSObject, APIMultipleViewModel {
                     .filterSuccessfulStatusCodes()
                     .map([ArticleInfo].self)
             }
-            .subscribe {[weak self] (event) in
+            .catchCommonError()
+            .subscribe({[weak self] (event) in
                 guard let self = self else { return }
                 switch event {
                 case .success:
                     self.basicViewModel.alertModel.accept(AlertModel(message: "Success"))
-                case .error(let error):
-                    self.basicViewModel.alertModel.accept(AlertModel(message: error.localizedDescription))
+                case .error:
+                    break
                 }
-                self.basicViewModel.showProgressHUD.accept(false)
-            }
+                self.basicViewModel.progressHUD.showProgressHUD.accept(false)
+            })
             .disposed(by: rx.disposeBag)
     }
 }

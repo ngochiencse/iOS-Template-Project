@@ -25,8 +25,13 @@ extension BasicViewPresentableView where Self: UIViewController {
     }
 }
 
-class BasicViewModelImpl: BasicViewModel {
+class BasicViewModelImpl: NSObject, BasicViewModel {
     var alertModel: BehaviorRelay<AlertModel?> = BehaviorRelay(value: nil)
-    var showProgressHUD: BehaviorRelay<Bool> = BehaviorRelay(value: false)
     var showIndicator: BehaviorRelay<Bool> = BehaviorRelay(value: false)
+    let progressHUD: ProgressHUDViewModel
+
+    init(progressHUD: ProgressHUDViewModel = ProgressHUDViewModelImpl.shared) {
+        self.progressHUD = progressHUD
+        super.init()
+    }
 }

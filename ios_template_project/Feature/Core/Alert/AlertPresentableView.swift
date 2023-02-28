@@ -24,7 +24,8 @@ extension AlertPresentableView where Self: UIViewController {
 extension UIViewController {
     @discardableResult
     func bindAlertViewModel(_ alertViewModel: AlertPresentableViewModel) -> Disposable {
-        let disposable = alertViewModel.alertModel.observeOn(MainScheduler.instance)
+        let disposable = alertViewModel.alertModel
+            .observeOn(MainScheduler.instance)
             .subscribe(onNext: {[weak self] (model: AlertModel?) in
                 guard let model = model else {
                     return

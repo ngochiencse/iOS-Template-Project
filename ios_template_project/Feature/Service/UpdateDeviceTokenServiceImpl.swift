@@ -20,9 +20,7 @@ class UpdateDeviceTokenServiceImpl: NSObject, UpdateDeviceTokenService {
 
     init(prefs: PrefsAccessToken = PrefsImpl.default,
          api: Provider<MultiTarget> =
-            ProviderAPIWithAccessToken<MultiTarget>(
-                autoHandleAccessTokenExpired: false,
-                autoHandleAPIError: false)) {
+            ProviderAPIWithAccessToken<MultiTarget>()) {
         self.prefs = prefs
         self.api = api
         super.init()
@@ -45,7 +43,7 @@ class UpdateDeviceTokenServiceImpl: NSObject, UpdateDeviceTokenService {
     }
 
     func updateDeviceToken(_ fcmToken: String) {
-        api.request(MultiTarget(SampleTarget.updateDeviceToken(fcmToken))).subscribe {[weak self] (event) in
+        api.request(MultiTarget(SampleTarget.updateDeviceToken(fcmToken))).subscribe({[weak self] (event) in
             guard let self = self else { return }
             switch event {
             case .success:
@@ -53,6 +51,6 @@ class UpdateDeviceTokenServiceImpl: NSObject, UpdateDeviceTokenService {
             case .error:
                 self.delegate?.updateDeviceTokenService(self, didUpdateWithSuccess: false)
             }
-        }.disposed(by: rx.disposeBag)
+        }).disposed(by: rx.disposeBag)
     }
 }
